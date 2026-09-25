@@ -422,7 +422,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 </aside>
 <div class="main">
   <div class="topbar">
-    <h2 id="topbarTitle">도면 업로드</h2>
+    <h2 id="topbarTitle">용량 계산</h2>
     <div class="topbar-right">
       <div class="summary-chip">
         <span class="label">견적 총액</span>
@@ -433,7 +433,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   </div>
 
   <!-- PAGE 0: 도면 업로드 -->
-  <div class="page active" id="page-pdf">
+  <div class="page" id="page-pdf">
     <div class="card">
       <div class="card-header"><h3>📄 도면 PDF 업로드</h3><span class="badge">AI 자동 추출</span></div>
       <div class="card-body">
@@ -485,7 +485,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   </div>
 
   <!-- PAGE 1: 용량 계산 -->
-  <div class="page" id="page-vol">
+  <div class="page active" id="page-vol">
     <div class="card">
       <div class="card-header"><h3>🧮 탱크 용량 계산</h3><span class="badge">내통 기준</span></div>
       <div class="card-body">
@@ -942,7 +942,7 @@ function deleteExtra(id){
 // ══ 사이드바 메뉴 ══
 const NAV_LS = 'fns_nav_v1';
 const DEFAULT_NAV = [
-  {id:'page-pdf',  icon:'📄', label:'도면 업로드',  group:'메뉴'},
+
   {id:'page-vol',  icon:'🧮', label:'용량 계산',    group:'메뉴'},
   {id:'page-dim',  icon:'📐', label:'치수 입력',    group:'메뉴'},
   {id:'page-buja', icon:'🔩', label:'부자재 관리',  group:'메뉴'},
@@ -953,7 +953,7 @@ const DEFAULT_NAV = [
 ];
 function loadNav(){ try{ const s=localStorage.getItem(NAV_LS); if(s){ const d=JSON.parse(s); if(d.length) return d; } }catch(e){} return JSON.parse(JSON.stringify(DEFAULT_NAV)); }
 function saveNav(){ try{ localStorage.setItem(NAV_LS,JSON.stringify(navItems)); }catch(e){} }
-let navItems = loadNav();
+let navItems = loadNav().filter(n=>n.id!=='page-pdf');
 // 혹시 새 메뉴가 DEFAULT에 있는데 저장본에 없으면 추가
 DEFAULT_NAV.forEach(d=>{ if(!navItems.find(n=>n.id===d.id)) navItems.push(d); });
 
