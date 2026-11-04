@@ -282,7 +282,67 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 .stamp-drop:hover,.stamp-drop.dragover{border-color:var(--accent);background:var(--accent-light);}
 
 /* ══ 모바일 반응형 ══ */
+/* ══ 대시보드 ══ */
+.dash-kpis{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:14px;margin-bottom:20px;}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;min-width:0;}
+.kpi-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px;}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--text);letter-spacing:-0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+.kpi-main{background:var(--text);border-color:var(--text);}
+.kpi-main .kpi-label{color:rgba(255,255,255,0.6);}
+.kpi-main .kpi-val{color:#7dd3fc;font-size:30px;}
+.kpi-main .kpi-sub{color:rgba(255,255,255,0.45);}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+.dash-grid > .card{min-width:0;}
+.dash-section{font-size:12px;font-weight:700;color:var(--text2);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.dash-section:first-child{margin-top:0;}
+.dash-section .dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
+.dash-inputs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.dash-inputs.two{grid-template-columns:1fr 1fr;}
+.dash-check{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);margin-top:10px;cursor:pointer;}
+.dash-check input{width:15px;height:15px;accent-color:var(--accent);}
+.cost-row{margin-bottom:14px;}
+.cost-row-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;font-size:13px;}
+.cost-row-top .amt{font-family:'JetBrains Mono',monospace;font-weight:600;}
+.cost-row-top .pct{font-size:11px;color:var(--text3);margin-left:6px;font-family:'JetBrains Mono',monospace;}
+.cost-track{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.cost-bar{height:100%;background:var(--accent);border-radius:0 4px 4px 0;transition:width 0.25s;}
+.dash-actions{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px;border-top:1px solid var(--border);background:var(--surface2);}
+.dash-actions .btn-success{padding:10px 18px;font-size:13px;}
+.hist-wrap{overflow-x:auto;}
+.hist-table{width:100%;border-collapse:collapse;font-size:13px;}
+.hist-table th{background:var(--surface2);padding:9px 12px;font-size:11px;font-weight:600;color:var(--text2);text-align:left;border-bottom:2px solid var(--border);white-space:nowrap;}
+.hist-table td{padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
+.hist-table tr:hover td{background:var(--surface2);}
+.hist-table .num{text-align:right;font-family:'JetBrains Mono',monospace;}
+.hist-table .cust{font-weight:600;max-width:140px;overflow:hidden;text-overflow:ellipsis;}
+.hist-table .ttl{color:var(--text2);max-width:160px;overflow:hidden;text-overflow:ellipsis;}
+.hist-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:12px;cursor:pointer;color:var(--text2);font-family:'Noto Sans KR',sans-serif;}
+.hist-btn:hover{border-color:var(--accent);color:var(--accent);}
+.hist-btn.del:hover{border-color:var(--red);color:var(--red);}
+.dash-empty{text-align:center;color:var(--text3);font-size:13px;padding:28px 12px;line-height:1.7;}
+.chart-legend{display:flex;gap:16px;font-size:12px;color:var(--text2);margin-bottom:8px;}
+.chart-legend span{display:inline-flex;align-items:center;gap:6px;}
+.chart-legend i{width:14px;height:2px;border-radius:1px;display:inline-block;}
+.chart-box{position:relative;}
+.chart-box svg{display:block;width:100%;overflow:visible;}
+.chart-tip{position:absolute;pointer-events:none;background:var(--text);color:#fff;border-radius:8px;padding:8px 11px;font-size:12px;line-height:1.6;white-space:nowrap;box-shadow:var(--shadow-lg);display:none;z-index:5;}
+.chart-tip .tip-date{font-weight:700;margin-bottom:2px;}
+.chart-tip i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
+.chart-tip .tip-memo{color:rgba(255,255,255,0.6);font-size:11px;}
+@media (max-width: 1100px){
+  .dash-grid{grid-template-columns:1fr;}
+}
+
 @media (max-width: 768px) {
+
+  /* 대시보드 */
+  .dash-kpis{grid-template-columns:1fr 1fr;gap:10px;}
+  .kpi{padding:14px;}
+  .kpi-val{font-size:19px;}
+  .kpi-main{grid-column:1/-1;}
+  .kpi-main .kpi-val{font-size:26px;}
+  .dash-inputs{grid-template-columns:1fr 1fr;}
 
   /* 전체 레이아웃 */
   html, body { overflow-x: hidden; }
@@ -422,13 +482,91 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
 </aside>
 <div class="main">
   <div class="topbar">
-    <h2 id="topbarTitle">용량 계산</h2>
+    <h2 id="topbarTitle">대시보드</h2>
     <div class="topbar-right">
       <div class="summary-chip">
         <span class="label">견적 총액</span>
         <span class="val" id="topTotal">0 원</span>
       </div>
       <button class="btn btn-success" onclick="exportExcel()">📥 엑셀 저장</button>
+    </div>
+  </div>
+
+  <!-- PAGE: 대시보드 -->
+  <div class="page active" id="page-dash">
+    <div class="dash-kpis">
+      <div class="kpi kpi-main"><div class="kpi-label">최종 견적 총액</div><div class="kpi-val" id="d_total">0</div><div class="kpi-sub">원 · 공과잡비 포함</div></div>
+      <div class="kpi"><div class="kpi-label">탱크 용량</div><div class="kpi-val" id="d_vol">0</div><div class="kpi-sub" id="d_vol_sub">리터 · 내통 기준</div></div>
+      <div class="kpi"><div class="kpi-label">총 중량</div><div class="kpi-val" id="d_kg">0</div><div class="kpi-sub">kg · 사용 파트 합계</div></div>
+      <div class="kpi"><div class="kpi-label">kg당 견적가</div><div class="kpi-val" id="d_perkg">0</div><div class="kpi-sub">원/kg · 총액 ÷ 중량</div></div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card">
+        <div class="card-header"><h3>✏️ 빠른 견적 입력</h3><span class="badge">실시간 계산</span></div>
+        <div class="card-body">
+          <div class="dash-section">고객 정보</div>
+          <div class="dash-inputs two">
+            <div class="input-group"><label>고객명</label><input type="text" id="d_customer" placeholder="예) ○○식품"></div>
+            <div class="input-group"><label>품명 / 현장</label><input type="text" id="d_title" placeholder="예) 500L 쟈켓탱크"></div>
+          </div>
+          <div class="dash-section"><span class="dot color-inner"></span>내통</div>
+          <div class="dash-inputs">
+            <div class="input-group"><label>내경 (mm)</label><input type="number" data-bind="i_id"></div>
+            <div class="input-group"><label>높이 (mm)</label><input type="number" data-bind="i_h"></div>
+            <div class="input-group"><label>두께 (mm)</label><input type="number" data-bind="i_t"></div>
+            <div class="input-group"><label>재질</label><select data-bind="i_mat"><option value="304">SUS304</option><option value="316">SUS316L</option></select></div>
+          </div>
+          <div class="dash-section"><span class="dot color-jacket"></span>쟈켓 · <span class="dot color-outer"></span>외통</div>
+          <div class="dash-inputs">
+            <div class="input-group"><label>쟈켓 두께</label><input type="number" data-bind="j_t"></div>
+            <div class="input-group"><label>쟈켓 재질</label><select data-bind="j_mat"><option value="304">SUS304</option><option value="316">SUS316L</option></select></div>
+            <div class="input-group"><label>외통 두께</label><input type="number" data-bind="o_t"></div>
+            <div class="input-group"><label>외통 재질</label><select data-bind="o_mat"><option value="304">SUS304</option><option value="316">SUS316L</option></select></div>
+          </div>
+          <label class="dash-check"><input type="checkbox" id="d_autofit" checked> 내통 치수를 바꾸면 쟈켓·외통 치수도 자동으로 맞추기</label>
+          <div class="dash-section">재질 단가 (원/kg)</div>
+          <div class="dash-inputs two">
+            <div class="input-group"><label>SUS304</label><input type="number" data-bind="price304"></div>
+            <div class="input-group"><label>SUS316L</label><input type="number" data-bind="price316"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>📊 비용 구성</h3><span class="badge" id="d_cost_badge">총액 대비</span></div>
+        <div class="card-body">
+          <div id="d_costs"></div>
+          <div class="dash-section" style="margin-top:20px">파트별 자재</div>
+          <table class="hist-table">
+            <thead><tr><th>구분</th><th>재질</th><th style="text-align:right">중량 (kg)</th><th style="text-align:right">금액 (원)</th></tr></thead>
+            <tbody id="d_parts"></tbody>
+          </table>
+        </div>
+        <div class="dash-actions">
+          <button class="btn btn-primary" onclick="saveDashQuote()">💾 견적 저장</button>
+          <button class="btn btn-ghost" onclick="openPdfPreview()">👁️ 견적서 PDF</button>
+          <button class="btn btn-success" onclick="exportExcel()">📥 엑셀</button>
+          <button class="btn btn-ghost" style="margin-left:auto" onclick="goPage('page-dim')">상세 편집 →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card">
+        <div class="card-header"><h3>📁 견적 이력</h3><span class="badge" id="d_hist_count">0건</span></div>
+        <div class="card-body" style="padding:12px 16px 4px">
+          <div class="search-bar" style="margin-bottom:8px"><input type="text" id="d_hist_q" placeholder="고객명·품명으로 검색" oninput="renderDashHistory()"></div>
+        </div>
+        <div class="hist-wrap" id="d_hist"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>📈 재질 단가 추이</h3><button class="btn btn-ghost" style="font-size:12px;padding:6px 12px" onclick="saveMarketPrice()">현재 단가 기록</button></div>
+        <div class="card-body">
+          <div class="chart-legend" id="d_chart_legend"><span><i style="background:#2f5de8"></i>SUS304</span><span><i style="background:#e85d2f"></i>SUS316L</span></div>
+          <div class="chart-box" id="d_chart"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -485,7 +623,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-seri
   </div>
 
   <!-- PAGE 1: 용량 계산 -->
-  <div class="page active" id="page-vol">
+  <div class="page" id="page-vol">
     <div class="card">
       <div class="card-header"><h3>🧮 탱크 용량 계산</h3><span class="badge">내통 기준</span></div>
       <div class="card-body">
@@ -942,7 +1080,7 @@ function deleteExtra(id){
 // ══ 사이드바 메뉴 ══
 const NAV_LS = 'fns_nav_v1';
 const DEFAULT_NAV = [
-
+  {id:'page-dash', icon:'🏠', label:'대시보드',     group:'메뉴'},
   {id:'page-vol',  icon:'🧮', label:'용량 계산',    group:'메뉴'},
   {id:'page-dim',  icon:'📐', label:'치수 입력',    group:'메뉴'},
   {id:'page-buja', icon:'🔩', label:'부자재 관리',  group:'메뉴'},
@@ -956,6 +1094,8 @@ function saveNav(){ try{ localStorage.setItem(NAV_LS,JSON.stringify(navItems)); 
 let navItems = loadNav().filter(n=>n.id!=='page-pdf');
 // 혹시 새 메뉴가 DEFAULT에 있는데 저장본에 없으면 추가
 DEFAULT_NAV.forEach(d=>{ if(!navItems.find(n=>n.id===d.id)) navItems.push(d); });
+// 대시보드는 저장된 메뉴 순서와 상관없이 맨 위로
+{ const di=navItems.findIndex(n=>n.id==='page-dash'); if(di>0) navItems.unshift(navItems.splice(di,1)[0]); }
 
 function renderNav(){
   const nav = document.getElementById('sidebarNav'); if(!nav) return;
@@ -1040,6 +1180,7 @@ function goPage(id) {
   document.getElementById('topbarTitle').textContent = item ? item.label : id;
   renderNav(); // active 상태 반영
   if (id === 'page-quote') renderQuote();
+  if (id === 'page-dash') { renderDash(); renderPriceChart(); }
   if (id === 'page-vendor') renderVendors();
   if (id === 'page-extra') renderExtra();
   if (id === 'page-settings-company') { initCompanyForm(); renderQuoteNotes(); }
@@ -1056,13 +1197,18 @@ function v(id){return +document.getElementById(id).value||0;}
 function togglePart(part) {
   const nameMap = {inner:'내통', jacket:'쟈켓', outer:'외통'};
   const checked = document.getElementById('use_'+part).checked;
+  setPartVisual(part);
+  calcAll();
+  showToast(checked ? `✅ ${nameMap[part]} 포함됨` : `➖ ${nameMap[part]} 제외됨`);
+}
+
+function setPartVisual(part) {
+  const checked = document.getElementById('use_'+part).checked;
   const body = document.getElementById('body-'+part);
   const card = document.getElementById('card-'+part);
   body.style.opacity = checked ? '1' : '0.35';
   body.style.pointerEvents = checked ? '' : 'none';
   card.style.borderColor = checked ? '' : 'var(--border2)';
-  calcAll();
-  showToast(checked ? `✅ ${nameMap[part]} 포함됨` : `➖ ${nameMap[part]} 제외됨`);
 }
 
 function calcKg_plate(id,t){const eid=id*1.14;return(eid*eid*t*7.93)/1000000*2;}
@@ -1107,6 +1253,7 @@ function calcAll() {
     <tr class="total"><td colspan="4">💰 견적 총액 (공과잡비 포함)</td><td>${fmt(grandTotal)}</td></tr>`;
   }
   document.getElementById('topTotal').textContent=fmt(grandTotal)+' 원';
+  try{ renderDash(); }catch(e){}
 }
 
 function renderQuote() {
@@ -1273,6 +1420,7 @@ function deleteHistoryPrice(id){
 }
 
 function renderPriceHistory(){
+  try{ renderPriceChart(); }catch(e){}
   const list = document.getElementById('priceHistoryList');
   const empty = document.getElementById('priceHistoryEmpty');
   if(!list) return;
@@ -1759,7 +1907,7 @@ function togglePreset(catIdx,itemIdx,el){
 }
 
 // 용량 계산
-function onTypeChange(){const type=document.querySelector('input[name="bottomType"]:checked').value;document.getElementById('cone-angle-group').style.display=type==='cone'?'block':'none';calcVol();}
+function onTypeChange(){const type=document.querySelector('input[name="bottomType"]:checked').value;document.getElementById('cone-angle-group').style.display=type==='cone'?'block':'none';calcVol();try{renderDash();}catch(e){}}
 function getVolLiter(id_mm,h_mm,bottomType,coneAngle){
   const r=id_mm/2,PI=Math.PI;
   const bodyVol=PI*r*r*h_mm/1000000;
@@ -1839,6 +1987,8 @@ function renderPdfPaper(){
   const stamp = localStorage.getItem('fns_stamp_v1');
   const coName = co.name || 'FNS TECH';
   const today = new Date().toLocaleDateString('ko-KR');
+  const cust = (document.getElementById('d_customer')||{}).value || '';
+  const qTitle = (document.getElementById('d_title')||{}).value || '';
   const bujaRows = bujaItems.map(i=>`
     <tr>
       <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;font-size:12px">${i.name}</td>
@@ -1862,6 +2012,8 @@ function renderPdfPaper(){
         <div style="font-size:28px;font-weight:800;color:#1e3a8a;letter-spacing:-0.5px">견 적 서</div>
         <div style="font-size:12px;color:#6b7280;margin-top:4px">QUOTATION</div>
         <div style="font-size:11px;color:#6b7280;margin-top:10px">작성일: ${today}</div>
+        ${cust ? `<div style="font-size:15px;font-weight:700;color:#111;margin-top:14px">${escHtml(cust)} 귀하</div>` : ''}
+        ${qTitle ? `<div style="font-size:12px;color:#374151;margin-top:2px">품명: ${escHtml(qTitle)}</div>` : ''}
       </div>
       <!-- 오른쪽: 회사정보 + 도장 -->
       <div style="display:flex;align-items:flex-start;gap:16px">
@@ -2261,7 +2413,249 @@ function confirmVendorModal(editId){
 
 function confirmAddVendor(){ confirmVendorModal(null); }
 
+// ══ 대시보드 ══
+const QUOTES_LS = 'fns_quotes_v1';
+const SNAP_FIELDS = ['price304','price316','i_id','i_h','i_t','i_mat','j_id','j_h','j_t','j_mat','o_id','o_h','o_t','o_mat','v_cone_angle'];
+const SNAP_PARTS = ['inner','jacket','outer'];
+const PART_COLOR = {'내통':'#2f5de8','쟈켓':'#e85d2f','외통':'#2fbe6f'};
+const MAT_LABEL = {'304':'SUS304','316':'SUS316L'};
+function loadQuotes(){ try{ const s=localStorage.getItem(QUOTES_LS); if(s) return JSON.parse(s); }catch(e){} return []; }
+function saveQuotes(){ try{ localStorage.setItem(QUOTES_LS, JSON.stringify(quotes)); }catch(e){ showToast('⚠️ 저장 공간이 부족해요'); } }
+var quotes = loadQuotes();
+
+function escHtml(s){ return String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function getBottomType(){ return (document.querySelector('input[name="bottomType"]:checked')||{}).value || 'dish'; }
+
+function getDashVolume(){
+  const id=v('i_id'), h=v('i_h');
+  if(!id || !h) return 0;
+  return getVolLiter(id, h, getBottomType(), +document.getElementById('v_cone_angle').value || 90).total;
+}
+
+// 빠른 입력칸 → 원래 입력칸으로 값 전달
+function initDash(){
+  document.querySelectorAll('#page-dash [data-bind]').forEach(el=>{
+    const evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, ()=>{
+      const target = document.getElementById(el.dataset.bind); if(!target) return;
+      target.value = el.value;
+      const key = el.dataset.bind;
+      if((key === 'i_id' || key === 'i_h') && document.getElementById('d_autofit').checked){
+        const id = v('i_id'), h = v('i_h');
+        document.getElementById('j_id').value = id + 102;
+        document.getElementById('j_h').value = Math.round(h*0.5/50)*50;
+        document.getElementById('o_id').value = id + 102 + 76;
+        document.getElementById('o_h').value = h;
+      }
+      if(key === 'price304') updatePreview('price304','prev304','원/kg');
+      if(key === 'price316') updatePreview('price316','prev316','원/kg');
+      calcAll();
+    });
+  });
+  window.addEventListener('resize', ()=>{ clearTimeout(window._chartRT); window._chartRT = setTimeout(renderPriceChart, 150); });
+}
+
+function renderDash(){
+  if(!document.getElementById('page-dash')) return;
+  const r = calcResult || {};
+  // 다른 페이지에서 바뀐 값도 빠른 입력칸에 반영
+  document.querySelectorAll('#page-dash [data-bind]').forEach(el=>{
+    if(el === document.activeElement) return;
+    const t = document.getElementById(el.dataset.bind); if(t) el.value = t.value;
+  });
+  const rows = r.rows || [];
+  const kg = rows.reduce((s,x)=>s+x.totalKg, 0);
+  const vol = getDashVolume();
+  const total = r.grandTotal || 0;
+  const typeLabel = {dish:'10%경판',flat:'평경판',cone:'콘타입'}[getBottomType()];
+  document.getElementById('d_total').textContent = fmt(total);
+  document.getElementById('d_vol').textContent = vol ? vol.toLocaleString('ko-KR',{maximumFractionDigits:0}) : '0';
+  document.getElementById('d_vol_sub').textContent = `리터 · 내통 기준 · 하부 ${typeLabel}`;
+  document.getElementById('d_kg').textContent = kg.toLocaleString('ko-KR',{maximumFractionDigits:1});
+  document.getElementById('d_perkg').textContent = kg ? fmt(total/kg) : '0';
+
+  const costs = [
+    {label:'자재비', note:'여분 10% 포함', val:r.matWith10||0},
+    {label:'부자재', note:`${bujaItems.length}개 항목`, val:r.bujaSum||0},
+    {label:'기타비용', note:`${extraItems.length}개 항목`, val:r.extraSum||0},
+    {label:'공과잡비', note:'소계의 10%', val:r.overhead||0},
+  ];
+  document.getElementById('d_costs').innerHTML = costs.map(c=>{
+    const pct = total ? c.val/total*100 : 0;
+    return `<div class="cost-row" title="${c.label} ${fmt(c.val)}원 (${pct.toFixed(1)}%)">
+      <div class="cost-row-top"><span>${c.label} <span style="font-size:11px;color:var(--text3)">${c.note}</span></span>
+        <span><span class="amt">${fmt(c.val)}</span><span class="pct">${pct.toFixed(1)}%</span></span></div>
+      <div class="cost-track"><div class="cost-bar" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('d_parts').innerHTML = rows.length ? rows.map(x=>`<tr>
+      <td><span class="dot" style="width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:6px;background:${PART_COLOR[x.label]}"></span>${x.label}</td>
+      <td style="color:var(--text2)">${MAT_LABEL[x.mat]||x.mat} · ${x.t}t</td>
+      <td class="num">${x.totalKg.toFixed(1)}</td>
+      <td class="num">${fmt(x.amount)}</td></tr>`).join('')
+    : `<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:16px">사용 중인 파트가 없어요</td></tr>`;
+}
+
+function saveDashQuote(){
+  calcAll();
+  const customer = document.getElementById('d_customer').value.trim();
+  const title = document.getElementById('d_title').value.trim();
+  if(!customer && !confirm('고객명 없이 저장할까요?')) return;
+  const fields = {};
+  SNAP_FIELDS.forEach(id=>{ const el=document.getElementById(id); if(el) fields[id]=el.value; });
+  const parts = {};
+  SNAP_PARTS.forEach(p=>{ parts[p] = document.getElementById('use_'+p).checked; });
+  const kg = (calcResult.rows||[]).reduce((s,x)=>s+x.totalKg, 0);
+  quotes.unshift({
+    id: Date.now(), date: new Date().toISOString(), customer, title,
+    total: calcResult.grandTotal||0, vol: getDashVolume(), kg,
+    bottomType: getBottomType(), fields, parts,
+    buja: JSON.parse(JSON.stringify(bujaItems)),
+    extra: JSON.parse(JSON.stringify(extraItems)),
+  });
+  saveQuotes();
+  renderDashHistory();
+  showToast(`💾 ${customer||'견적'} 저장됐어요`);
+}
+
+function loadDashQuote(id){
+  const q = quotes.find(x=>x.id===id); if(!q) return;
+  if(!confirm(`"${q.customer||'이름 없음'}" 견적을 불러올까요?\n지금 입력 중인 내용은 바뀌어요.`)) return;
+  Object.entries(q.fields||{}).forEach(([k,val])=>{ const el=document.getElementById(k); if(el) el.value=val; });
+  Object.entries(q.parts||{}).forEach(([p,on])=>{ const el=document.getElementById('use_'+p); if(el){ el.checked=on; setPartVisual(p); } });
+  const radio = document.querySelector(`input[name="bottomType"][value="${q.bottomType||'dish'}"]`);
+  if(radio){ radio.checked = true; onTypeChange(); }
+  document.getElementById('d_customer').value = q.customer||'';
+  document.getElementById('d_title').value = q.title||'';
+  bujaItems = JSON.parse(JSON.stringify(q.buja||[]));
+  idCnt = Math.max(idCnt, 0, ...bujaItems.map(b=>b.id||0));
+  // 부자재 프리셋 체크 상태 맞추기
+  presetOnSet.clear();
+  PRESETS.forEach((c,ci)=>(c.items||[]).forEach((it,ii)=>{ if(bujaItems.some(b=>b.name===it.name)) presetOnSet.add(ci+'_'+ii); }));
+  extraItems = JSON.parse(JSON.stringify(q.extra||[]));
+  extraIdCnt = Math.max(0, ...extraItems.map(i=>i.id||0));
+  saveExtra();
+  updatePreview('price304','prev304','원/kg');
+  updatePreview('price316','prev316','원/kg');
+  renderBuja(); renderExtra(); renderPresets();
+  calcAll();
+  showToast(`📂 ${q.customer||'견적'} 불러왔어요`);
+}
+
+function deleteDashQuote(id){
+  const q = quotes.find(x=>x.id===id); if(!q) return;
+  if(!confirm(`"${q.customer||'이름 없음'}" 견적을 삭제할까요?`)) return;
+  quotes = quotes.filter(x=>x.id!==id);
+  saveQuotes();
+  renderDashHistory();
+}
+
+function renderDashHistory(){
+  const box = document.getElementById('d_hist'); if(!box) return;
+  const q = (document.getElementById('d_hist_q').value||'').trim().toLowerCase();
+  const list = q ? quotes.filter(x=>(x.customer+' '+x.title).toLowerCase().includes(q)) : quotes;
+  document.getElementById('d_hist_count').textContent = `${quotes.length}건`;
+  if(!list.length){
+    box.innerHTML = `<div class="dash-empty">${quotes.length ? '검색 결과가 없어요' : '아직 저장된 견적이 없어요.<br>위에서 <strong>💾 견적 저장</strong>을 누르면 여기에 쌓여요.'}</div>`;
+    return;
+  }
+  box.innerHTML = `<table class="hist-table">
+    <thead><tr><th>날짜</th><th>고객</th><th>품명</th><th style="text-align:right">용량 (L)</th><th style="text-align:right">총액 (원)</th><th></th></tr></thead>
+    <tbody>${list.map(x=>{
+      const d = new Date(x.date);
+      const ds = `${String(d.getFullYear()).slice(2)}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+      return `<tr>
+        <td style="color:var(--text2)">${ds}</td>
+        <td class="cust" title="${escHtml(x.customer)}">${escHtml(x.customer)||'<span style="color:var(--text3)">-</span>'}</td>
+        <td class="ttl" title="${escHtml(x.title)}">${escHtml(x.title)||'-'}</td>
+        <td class="num">${Math.round(x.vol||0).toLocaleString('ko-KR')}</td>
+        <td class="num" style="font-weight:600">${fmt(x.total)}</td>
+        <td style="text-align:right"><button class="hist-btn" onclick="loadDashQuote(${x.id})">불러오기</button> <button class="hist-btn del" onclick="deleteDashQuote(${x.id})" title="삭제">✕</button></td>
+      </tr>`;}).join('')}</tbody></table>`;
+}
+
+// 재질 단가 추이 (시세 기록 기반 꺾은선)
+function renderPriceChart(){
+  const box = document.getElementById('d_chart'); if(!box) return;
+  const pts = [...priceHistory].sort((a,b)=>a.id-b.id);
+  const legend = document.getElementById('d_chart_legend');
+  if(!pts.length){
+    legend.style.display = 'none';
+    box.innerHTML = `<div class="dash-empty">기록된 단가가 없어요.<br>오른쪽 위 <strong>현재 단가 기록</strong>을 누를 때마다 추이가 쌓여요.</div>`;
+    return;
+  }
+  legend.style.display = '';
+  const W = Math.max(box.clientWidth || 0, 280), H = 220;
+  const m = {t:12, r:78, b:28, l:52};
+  const series = [
+    {key:'p304', name:'SUS304', color:'#2f5de8'},
+    {key:'p316', name:'SUS316L', color:'#e85d2f'},
+  ];
+  const vals = pts.flatMap(p=>series.map(s=>p[s.key]).filter(Boolean));
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const pad = Math.max((hi-lo)*0.15, hi*0.05, 100);
+  lo = Math.max(0, lo-pad); hi = hi+pad;
+  const step = niceStep((hi-lo)/4);
+  lo = Math.floor(lo/step)*step; hi = Math.ceil(hi/step)*step;
+  const x0 = pts[0].id, x1 = pts[pts.length-1].id;
+  const X = t => pts.length===1 ? m.l+(W-m.l-m.r)/2 : m.l + (t-x0)/(x1-x0)*(W-m.l-m.r);
+  const Y = val => m.t + (1-(val-lo)/(hi-lo))*(H-m.t-m.b);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="재질 단가 추이">`;
+  for(let g=lo; g<=hi+0.001; g+=step){
+    svg += `<line x1="${m.l}" x2="${W-m.r}" y1="${Y(g)}" y2="${Y(g)}" stroke="#e2e5f0" stroke-width="1"/>`;
+    svg += `<text x="${m.l-8}" y="${Y(g)+4}" text-anchor="end" font-size="11" fill="#9ba3c4" font-family="JetBrains Mono,monospace">${g.toLocaleString('ko-KR')}</text>`;
+  }
+  // x축 날짜 라벨 (처음 / 끝)
+  const xl = pts.length===1 ? [pts[0]] : [pts[0], pts[pts.length-1]];
+  xl.forEach((p,i)=>{
+    const anchor = pts.length===1 ? 'middle' : (i===0 ? 'start' : 'end');
+    svg += `<text x="${X(p.id)}" y="${H-8}" text-anchor="${anchor}" font-size="11" fill="#9ba3c4">${escHtml(p.date)}</text>`;
+  });
+  series.forEach(s=>{
+    const sp = pts.filter(p=>p[s.key]);
+    if(!sp.length) return;
+    if(sp.length>1) svg += `<polyline fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${sp.map(p=>`${X(p.id)},${Y(p[s.key])}`).join(' ')}"/>`;
+    sp.forEach(p=>{ svg += `<circle cx="${X(p.id)}" cy="${Y(p[s.key])}" r="4" fill="${s.color}" stroke="#fff" stroke-width="2"/>`; });
+    const last = sp[sp.length-1];
+    svg += `<text x="${X(last.id)+10}" y="${Y(last[s.key])+4}" font-size="11" fill="#1e2340" font-weight="600">${s.name.replace('SUS','')} ${last[s.key].toLocaleString('ko-KR')}</text>`;
+  });
+  svg += `<line id="d_cross" y1="${m.t}" y2="${H-m.b}" stroke="#9ba3c4" stroke-width="1" stroke-dasharray="3 3" style="display:none"/>`;
+  svg += `<rect x="${m.l-10}" y="0" width="${W-m.l-m.r+20}" height="${H}" fill="transparent" id="d_hit"/>`;
+  svg += `</svg><div class="chart-tip" id="d_tip"></div>`;
+  box.innerHTML = svg;
+
+  const hit = document.getElementById('d_hit'), tip = document.getElementById('d_tip'), cross = document.getElementById('d_cross');
+  const svgEl = box.querySelector('svg');
+  const show = evt=>{
+    const rect = svgEl.getBoundingClientRect();
+    const px = (evt.clientX - rect.left) * (W/rect.width);
+    let best = pts[0];
+    pts.forEach(p=>{ if(Math.abs(X(p.id)-px) < Math.abs(X(best.id)-px)) best = p; });
+    const cx = X(best.id);
+    cross.setAttribute('x1', cx); cross.setAttribute('x2', cx); cross.style.display = '';
+    tip.innerHTML = `<div class="tip-date">${escHtml(best.date)}</div>` +
+      series.filter(s=>best[s.key]).map(s=>`<div><i style="background:${s.color}"></i>${s.name} <b>${best[s.key].toLocaleString('ko-KR')}</b> 원/kg</div>`).join('') +
+      (best.memo ? `<div class="tip-memo">💬 ${escHtml(best.memo)}</div>` : '');
+    tip.style.display = 'block';
+    const left = cx*(rect.width/W);
+    tip.style.left = Math.min(Math.max(0, left - tip.offsetWidth/2), rect.width - tip.offsetWidth) + 'px';
+    tip.style.top = '-8px';
+    tip.style.transform = 'translateY(-100%)';
+  };
+  hit.addEventListener('mousemove', show);
+  hit.addEventListener('touchstart', e=>show(e.touches[0]), {passive:true});
+  hit.addEventListener('mouseleave', ()=>{ tip.style.display='none'; cross.style.display='none'; });
+}
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(raw||1)));
+  const n = raw/p;
+  return (n<=1?1:n<=2?2:n<=5?5:10)*p;
+}
+
 // 초기 실행
+try { initDash(); } catch(e) {}
+try { renderDashHistory(); } catch(e) {}
 try { calcVol(); } catch(e) {}
 try { calcReverse(); } catch(e) {}
 try { calcAll(); } catch(e) {}
